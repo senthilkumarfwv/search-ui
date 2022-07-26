@@ -1,0 +1,134 @@
+input {
+  border: 1px solid map-get($slate, 300);
+  height: 40px;
+  color: map-get($grey, 750);
+  @include placeholder {
+    color: map-get($grey, 500);
+    @include desp;
+    @include ft-calc($font-normal);
+    font-weight: 500;
+  }
+  background-color: white;
+  &.form-control {
+    @include border-radius(4px);
+    box-sizing: border-box;
+    @include desp;
+    @include ft-calc($font-small);
+    font-weight: 400;
+    padding: 0 0 0 16px;
+    &:focus {
+      border: none
+    }
+  }
+}
+
+.form-select {
+  font-size: 14px;
+}
+
+form {
+  .form-group {
+    position: relative;
+    input {
+      &.select {
+        cursor: pointer;
+        &[readonly] {
+          background-color: white;
+          color: map-get($grey , 300);
+          &:-webkit-autofill {
+              @include box-shadow(0 0 0px 1000px white inset);
+              -webkit-text-fill-color: white;
+            }
+        }
+        &:focus{
+          @include box-shadow(none);
+          background-color: white;
+          border: 1px solid map-get($grey , 750)
+        }
+        & + .select-arrow {
+          &:after{
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-family: FontAwesome;
+            @include ft-calc($font-h4);
+            color: map-get($grey , 750);
+            content: "";
+            margin:0 0.5em;
+            display:inline-block;
+           }
+           &.down {
+            &:after{
+              content:"\f107"
+            }
+           }
+           &.up {
+               &:after{
+               content:"\f106"
+             }
+           }
+        }
+        &.multi{
+          text-indent: -1000px;
+          min-height: 42px;
+          @include placeholder {
+            text-indent: 0px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.input-group {
+  align-items: center;
+}
+
+.search-box, .select-box  {
+	.dropdown-wrapper {
+		display: none;
+		position: absolute;
+		z-index: 3;
+		width: 100%;
+		margin: 4px 0 0 0;
+		&.show{
+			display: block;
+		}
+    @include step-breakpoint('lt-lg') {
+			width: 100%;
+		}
+		.dropdown {
+			float: left;
+			overflow: hidden;
+			width: 100%;
+			@include border-radius(4px);
+			@include box-shadow(0 3px 13px 0 rgba(black, 0.4));
+			li{
+				color: map-get($cool-blue , 900);
+				background-color: white;
+				padding: 10px;
+				@include ft-calc($font-small);
+				border: 1px solid map-get($slate , 300);
+				width: 100%;
+				&.selected {
+					&:before{
+						font-family: FontAwesome;
+						content: '\f00c';
+						color: map-get($grey , 750);
+						margin: 0 6px 0 0;
+					}
+				}
+				&:hover {
+					background-color: map-get($slate , 200);
+				}
+			}
+		}
+	}
+}
+
+.select-box {
+	.dropdown {
+		max-height: 200px;
+		overflow: scroll !important;
+	}
+}

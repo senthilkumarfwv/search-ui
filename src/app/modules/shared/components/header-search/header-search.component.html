@@ -1,0 +1,35 @@
+<div class="search-wrapper">
+  <span class="fa fa-search search-icon text-primary search-link" (click)="showSearch()"></span>
+  <div class="search-container">
+    <div class="search-overlay"></div>
+    <div class="search-box d-flex align-items-center">
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon1">
+          <span class="fa fa-search search-icon text-primary"></span>
+        </span>
+        <input type="text" class="form-control" placeholder="What do you want to learn?" name="search" [(ngModel)]="search" (ngModelChange)="handleSearchChange()" autocomplete="off">
+      </div>
+      <button type="button" class="btn-close search-close" aria-label="Close"></button>
+    </div>
+    <div class="search-results" *ngIf="isSearchOn && (productsList | searchData: search).length != 0">
+      <ng-container *ngIf="!isSearchResults">
+        <div class="loader-wrapper d-flex justify-content-center">
+          <div class="loader"></div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="isSearchResults">
+        <div class="results-box">
+          <div class="mb-3">
+            <div class="mb-2" *ngFor=" let item of productsList | searchData: search; let i = index; ">
+              <a href="javascript:void(0)" class="item" (click)="gotToSearch(item.title)">{{item.title}}</a>
+            </div>
+          </div>
+          <a class="view-all" href="javascript:void(0)" (click)="gotToSearch(search)">View all results
+            <span class="ms-1 fw-semibold fa fa-angle-right"></span>
+          </a>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+</div>

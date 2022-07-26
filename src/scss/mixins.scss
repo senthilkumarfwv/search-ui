@@ -1,0 +1,127 @@
+
+@import "variables";
+
+@mixin border-radius ($radius) {
+	-webkit-border-radius: $radius !important;
+	-moz-border-radius: $radius !important;
+	border-radius: $radius !important;
+}
+
+
+@mixin opacity ($value) {
+  opacity: $value;
+  -moz-opacity: $value;
+  -webkit-opacity: $value;
+}
+
+@mixin box-shadow ($rules...) {
+  box-shadow: $rules !important;
+  -moz-box-shadow: $rules !important;
+  -webkit-box-shadow: $rules !important;
+}
+
+@mixin text-shadow ($rules) {
+  text-shadow: $rules;
+  -moz-text-shadow: $rules;
+  -webkit-text-shadow: $rules;
+}
+
+@mixin transform ($rules) {
+	-webkit-transform: $rules !important;
+	-moz-transform: $rules !important;
+	transform: $rules !important;
+}
+
+@mixin transition ($rules...) {
+	-webkit-transition: $rules;
+	-moz-transition: $rules;
+	transition: $rules;
+}
+
+
+@mixin box-sizing ($rules...) {
+  -webkit-box-sizing: $rules;
+  -moz-box-sizing: $rules;
+  box-sizing: $rules;
+}
+
+@mixin visibility ($rules) {
+  visibility: $rules;
+}
+
+@mixin no-mp () {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin circles($r, $bg:null, $tc:null) {
+  width: $r;
+  height: $r;
+  display: inline-flex;
+  justify-content:center;
+  align-items:center;
+  background-color: $bg;
+  color: $tc;
+  @include border-radius($r);
+}
+
+@mixin linear-gradient($direction, $color-stops...) {
+  // Direction has been omitted and happens to be a color-stop
+  @if is-direction($direction) == false {
+    $color-stops: $direction, $color-stops;
+    $direction: 180deg;
+  }
+
+  background: nth(nth($color-stops, 1), 1);
+  background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+  background: linear-gradient($direction, $color-stops);
+}
+
+@mixin flip($direction) {
+  transform : rotateY($direction);
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}
+}
+
+@mixin ft-calc($pixels) {
+  font-size: calc($pixels / $rem-base) + rem;
+}
+
+@mixin heading {
+  font-family: 'Merriweather', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+}
+
+@mixin desp {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@mixin step-breakpoint($breakpoint) {
+
+  $mediaQuery: map-get($step-breakpoints, $breakpoint);
+
+  @if ($mediaQuery != null) {
+
+      @media #{$mediaQuery} {
+          @content
+      }
+  } @else {
+
+      @media #{$breakpoint} {
+          @content
+      }
+  }
+}

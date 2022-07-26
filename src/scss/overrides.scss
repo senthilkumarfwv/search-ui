@@ -1,0 +1,32 @@
+
+//button
+.btn {
+  min-width: 120px;
+  font-size: 14px;
+  @include desp();
+  height: 42px;
+  padding: 0 18px;
+  border-radius: 4px;
+  line-height: 40px;
+  letter-spacing: 0.3px;
+  &.btn-primary, .btn-secondary {
+    color: white;
+  }
+  &:hover, &:focus, &.active, &.active:focus {
+    color: white;
+    box-shadow: none !important;
+  }
+  &.link-btn {
+    margin: 0 8px;
+  }
+}
+
+.navbar {
+  .navbar-nav {
+    .search-link {
+      margin: 0 8px;
+      line-height: 40px;
+      cursor: pointer;
+    }
+  }
+}

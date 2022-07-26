@@ -1,0 +1,123 @@
+<div class="search-ui-block mt-3">
+  <div class="container">
+    <div class="row">
+      <div class="d-none d-md-block col-md-4 filter-box">
+        <div class="content">
+          <h6 class="main-title text-uppercase">Filter By</h6>
+          <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Level
+                </button>
+                <div *ngIf="selectedLevelFilter" class="selected-filter">
+                  <span>{{selectedLevelFilter}}</span>
+                  <span class="fa fa-close close" (click)="clearLevelFilterBy()"></span>
+                </div>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <ul class="list-group">
+                    <li *ngFor="let item of levels" class="list-group-item"><a href="javascript:void(0)" (click)="handleFilterBy(item, 'level')">{{item}}</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Instructor
+                </button>
+                <div *ngIf="selectedInstructorFilter" class="selected-filter">
+                  <span>{{selectedInstructorFilter}}</span>
+                  <span class="fa fa-close close" (click)="clearInstructorFilterBy()"></span>
+                </div>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <ul class="list-group">
+                    <li *ngFor="let item of instrutors" class="list-group-item"><a href="javascript:void(0)" (click)="handleFilterBy(item, 'instructor')">{{item}}</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-ms-12 col-md-8 search-box">
+
+        <div class="search-bar">
+          <div class="input-group mb-3">
+            <span class="input-group-text fa fa-search" id="basic-addon1"></span>
+            <input type="text" class="form-control" placeholder="Search" name="search" [(ngModel)]="search" (keyup.enter)="handleSearch()" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="d-none d-md-block">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li *ngFor=" let item of tabs; let i = index; " class="nav-item" role="presentation">
+              <button class="nav-link text-capitalize" [ngClass]="(selectedTabIndex == i) ? 'active' : ''" id="all-{{item}}" data-bs-toggle="tab" [attr.data-bs-target]="'#'+item" type="button" role="tab" [attr.aria-controls]="item" aria-selected="true" (click)="setSelectTabIndex(item, i)">{{item}}</button>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+
+            <ng-container *ngFor=" let item of tabs; let i = index;">
+              <div class="tab-pane fade" [ngClass]="(selectedTabIndex == i) ? 'show active' : ''"  id="{{item}}" role="tabpanel" [attr.aria-labelledby]="item+'-tab'">
+
+                <div class="mt-5">
+
+                  <ng-container *ngIf="!isSearchResults">
+                    <div class="loader-wrapper d-flex justify-content-center">
+                      <div class="loader"></div>
+                    </div>
+                  </ng-container>
+
+                  <ng-container *ngIf="isSearchResults">
+                    <ng-container [ngSwitch] = "selectedCategory">
+                      <div *ngSwitchCase="'all'">
+                        <all-search-results [data]="searchResultsData"></all-search-results>
+                      </div>
+                      <div *ngSwitchCase="'courses'">
+                        <courses-search-results [data]="searchResultsData"></courses-search-results>
+                      </div>
+                      <div *ngSwitchCase="'webinars'">
+                        <webinars-search-results [data]="searchResultsData"></webinars-search-results>
+                      </div>
+                    </ng-container>
+                  </ng-container>
+
+                </div>
+
+              </div>
+            </ng-container>
+
+          </div>
+        </div>
+
+        <div class="d-md-none">
+          <div class="my-5 select-box">
+            <select class="form-select" #selectMobile [ngModel]="selectedCategory" (change)="setSelectTabIndex(selectMobile.value, selectMobile.id)">
+              <option [id]="i" [value]="item" *ngFor="let item of tabs; let i = index">{{item}}</option>
+            </select>
+          </div>
+          <div>
+            <ng-container *ngIf="isSearchResults">
+              <ng-container [ngSwitch] = "selectedCategory">
+                <div *ngSwitchCase="'all'">
+                  <all-search-results [data]="searchResultsData"></all-search-results>
+                </div>
+                <div *ngSwitchCase="'courses'">
+                  <courses-search-results [data]="searchResultsData"></courses-search-results>
+                </div>
+                <div *ngSwitchCase="'webinars'">
+                  <webinars-search-results [data]="searchResultsData"></webinars-search-results>
+                </div>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

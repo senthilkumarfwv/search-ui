@@ -1,0 +1,112 @@
+@import '~src/scss/abstract';
+
+
+.search-ui-block {
+  .filter-box {
+    background-color: map-get($slate, 100);
+    .content {
+      padding: 28px 10px;
+      .main-title {
+        font-size: 16px;
+        margin: 0 0 30px 18px;
+        letter-spacing: 1px;
+      }
+      .accordion {
+        &, .accordion-item {
+          background: transparent;
+          border: none;
+        }
+        .accordion-item {
+          .accordion-button {
+            background: transparent;
+            border-top: 1px solid map-get($grey, 300);
+            font-size: 16px;
+            padding: 18px 16px !important;
+            &:focus {
+              box-shadow: none;
+            }
+            &:after {
+              content: "\f067";
+              font-family: FontAwesome;
+              background-image: none;
+              transition: none;
+              position: relative;
+              color: map-get($slate, 500);
+            }
+            & + .selected-filter {
+              display: flex;
+              justify-content: space-between;
+              padding: 10px 8px;
+              background-color: map-get($slate , 300);
+              font-size: 14px;
+              margin: 0 20px 10px 20px;
+              .close {
+                cursor: pointer;
+              }
+            }
+            &:not(.collapsed) {
+              box-shadow: none;
+              &:after {
+                content: "\f068";
+                left: -7px;
+              }
+            }
+          }
+          .accordion-body {
+            padding-top: 0;
+            .list-group-item {
+              border: 0;
+              background: transparent;
+              font-size: 14px;
+              padding-top: 6px;
+              padding-bottom: 6px;
+              a {
+                text-decoration: none;
+                color: inherit;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .search-box {
+    .search-bar {
+      background-color: map-get($slate, 100);
+      input, .input-group-text {
+        border: none;
+        background-color: transparent;
+        font-size: 16px;
+        &:focus {
+          box-shadow: none;
+        }
+      }
+      input {
+        padding-left: 0;
+      }
+      .input-group-text {
+        padding: 16px 20px;
+        font-size: 20px;
+      }
+    }
+    .nav {
+      .nav-link {
+        border-width: 2px;
+        color: map-get($slate, 600);
+        font-size: 16px;
+        padding: 10px 20px !important;
+        &.active,  &:active, &:hover {
+          color: map-get($slate, 900);
+          border-color: transparent transparent #f87171;
+        }
+      }
+    }
+  }
+  .select-box {
+    .form-select {
+      font-size: 14px;
+      padding: 8px 14px;
+      text-transform: capitalize;
+    }
+  }
+}

@@ -1,0 +1,115 @@
+
+$step-breakpoints: (
+  xs: '(min-width: 0) and (max-width: 575px)',
+ sm: '(min-width: 576px) and (max-width: 767px)',
+ md: '(min-width: 768px) and (max-width: 991px)',
+ lg: '(min-width: 992px) and (max-width: 1199px)',
+ xl: '(min-width: 1200px)',
+ xxl: '(min-width: 1440px)',
+ lt-md: '(max-width: 767px)',
+ lt-lg: '(max-width: 991px)',
+ lt-xl: '(max-width: 1199px)',
+ gt-xs: '(min-width: 576px)',
+ gt-sm: '(min-width: 768px)',
+ gt-md: '(min-width: 992px)',
+ ) !default;
+
+
+//theme colors
+$primary:#1f7ce0;
+$secondary:#091830;
+$info:#0D6EFD;
+$success:#265035;
+$danger:#7A282B;
+$warning:#635019;
+$light: #f5faff;
+$dark: #091830;
+
+//custom colors
+
+ //colors
+
+$cool-blue:(
+  100: #ecf4fc,
+  150: #f1f6fc,
+  200: #f1f8ff,
+  250: #e0eefc,
+  300: #c0d8f2,
+  350: #f5faff,
+  400: #e1effa,
+  500: #1f7ce0,
+  600: #3589e3,
+  700: #15305c,
+  800: #283345,
+  900: #091830
+) !default;
+
+$slate: (
+  100: #f8fafc,
+  200: #f1f5f9,
+  300: #e2e8f0,
+  400: #cbd5e1,
+  500: #94a3b8,
+  600: #64748b,
+  700: #475569,
+  800: #334155,
+  900: #1e293b
+) !default;
+
+$grey: (
+  100: #fafafa,
+  200: #f7f9fa,
+  250: #f7f7f7,
+  300: #e7e7e7,
+  350: #ecf3f9,
+  400: #ececec,
+  500: #aab1bd,
+  600: #6a6e73,
+  700: #717984,
+  750: #737880,
+  850: #5f6266,
+) !default;
+
+$cool-red: (
+  200: #f18686
+) !default;
+
+$cool-orange: (
+  400: #fb923c
+) !default;
+
+
+//font-sizes
+$rem-base:10;
+
+$font-massive:50;
+$font-huge:45;
+$font-h1:39;
+$font-h2:34;
+$font-h3:24;
+$font-h4: 20;
+$font-h5: 18;
+$font-base:16;
+$font-normal:15;
+$font-small:14;
+$font-smaller:13;
+$font-tiny:12;
+$font-micro:10;
+
+// images
+$images: "/assets/images";
+
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+);
+
+
+$grid-gutter-width:32px;
+
